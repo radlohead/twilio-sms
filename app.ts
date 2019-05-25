@@ -1,5 +1,5 @@
 const twilio = require('twilio')
-const express = require('express')
+import express from 'express'
 const bodyParser = require('body-parser')
 const app = express()
 const userInfo = require('./userInfo')
@@ -28,7 +28,7 @@ app.post('/receive', async (req, res) => {
             from: '+12562903533',
             to: '+821075457456'
         })
-        .then(message => {
+        .then((message: any) => {
             res.redirect('http://localhost:3000/sms/success')
         })
 })
