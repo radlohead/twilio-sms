@@ -3,6 +3,7 @@ import express, { Application, Request, Response, NextFunction } from 'express'
 import bodyParser from 'body-parser'
 import userInfo from './userInfo'
 import ejs from 'ejs'
+import { IMessage } from './appTypes'
 
 const app: Application = express()
 const accountSid: string = userInfo.accountSid
@@ -32,7 +33,7 @@ app.post(
                 from: '+12562903533',
                 to: '+821075457456'
             })
-            .then((message: any) => {
+            .then((message: IMessage) => {
                 res.redirect('http://localhost:3000/sms/success')
             })
     }
