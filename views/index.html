@@ -9,29 +9,12 @@
     <body>
         <div id="root">
             <h1>twilio sms</h1>
-            <form
-                action="http://localhost:3000/receive"
-                method="post"
-                onsubmit="formSubmit(event)"
-            >
+            <form action="http://localhost:3000/receive" method="post">
                 <input type="text" name="smsInput" id="smsInput" />
                 <button>
                     sms send
                 </button>
             </form>
         </div>
-        <script>
-            const asyncSmsSend = async text => {
-                const responseData = await ('http://localhost:3000/receive',
-                text)
-                const response = await responseData
-                return response
-            }
-
-            const formSubmit = e => {
-                const smsText = document.querySelector('#smsInput')
-                asyncSmsSend(smsText.value)
-            }
-        </script>
     </body>
 </html>
