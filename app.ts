@@ -24,19 +24,16 @@ app.get('/sms/success', (req: Request, res: Response, next: NextFunction) => {
     res.send('sms send success')
 })
 
-app.post(
-    '/receive',
-    async (req: Request, res: Response, next: NextFunction) => {
-        client.messages
-            .create({
-                body: req.body.smsInput,
-                from: '+12562903533',
-                to: '+821075457456'
-            })
-            .then((message: IMessage) => {
-                res.redirect('http://localhost:3000/sms/success')
-            })
-    }
-)
+app.post('/receive', (req: Request, res: Response, next: NextFunction) => {
+    client.messages
+        .create({
+            body: req.body.smsInput,
+            from: '+12562903533',
+            to: '+821075457456'
+        })
+        .then((message: IMessage) => {
+            res.redirect('http://localhost:3000/sms/success')
+        })
+})
 
 app.listen(3000, () => console.log('twilio server listening on port 3000'))

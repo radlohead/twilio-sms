@@ -9,12 +9,33 @@
     <body>
         <div id="root">
             <h1>twilio sms</h1>
-            <form action="http://localhost:3000/receive" method="post">
+            <form name="myForm" method="post">
                 <input type="text" name="smsInput" id="smsInput" />
-                <button>
-                    sms send
-                </button>
             </form>
+            <button onclick="handleClickSubmit()">click</button>
         </div>
+        <script>
+            const handleClickSubmit = async () => {
+                try {
+                    const form = document.querySelector(
+                        '[name=myForm] > [name=smsInput]'
+                    )
+                    const responseData = await fetch(
+                        'http://localhost:3000/receive',
+                        {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                smsInput: form.value
+                            })
+                        }
+                    )
+                } catch (err) {
+                    throw Error(err)
+                }
+            }
+        </script>
     </body>
 </html>
